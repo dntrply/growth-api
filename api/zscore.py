@@ -1,10 +1,35 @@
-import os
+import os, logging
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import pandas as pd
+# ── Custom OpenAPI with servers block ──────────────────────────────────────────
+from fastapi.openapi.utils import get_openapi
 
-# Configure logging for API calls
-import logging
+
+# ── Create FastAPI app ─────────────────────────────────────────────────────────
+app = FastAPI()
+
+
+def custom_openapi():
+    """Inject a stable servers list so ChatGPT recognizes only one host."""
+    if app.openapi_schema:
+        return app.openapi_schema
+
+    openapi_schema = get_openapi(
+        title="WHO Growth API",
+        version="0.1.0",
+        description="Compute WHO z-scores for children (education only).",
+        routes=app.routes,
+    )
+    openapi_schema["servers"] = [
+        { "url": "https://growth-api.vercel.app" }   # ← your permanent alias
+    ]
+    app.openapi_schema = openapi_schema
+    return openapi_schema
+
+# Register the custom generator once
+app.openapi = custom_openapi
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -21,8 +46,6 @@ tables = {
     ("F", "wfl"):    pd.read_csv(os.path.join(DATA_DIR, "WHO-Girls-Weight-for-length-Percentiles_LMS.csv")),
 }
 
-# ── Create FastAPI app ─────────────────────────────────────────────────────────
-app = FastAPI()
 
 # ── Request schema ─────────────────────────────────────────────────────────────
 class ZScoreRequest(BaseModel):
