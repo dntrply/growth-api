@@ -24,6 +24,11 @@ def custom_openapi():
     openapi_schema["servers"] = [
         { "url": "https://growth-api.vercel.app" }   # ← your permanent alias
     ]
+
+    # 2) Tell ChatGPT this call is safe to 'always allow'
+    if "/zscore" in openapi_schema["paths"]:
+        openapi_schema["paths"]["/zscore"]["post"]["x-openai-isConsequential"] = False
+
     app.openapi_schema = openapi_schema
     return openapi_schema
 
