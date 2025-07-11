@@ -38,10 +38,12 @@ pip install -r requirements.txt
 
 ## Usage
 
-Start the API server:
+## Usage
+
+Start the API server (using the \\api\\zscore module):
 
 ```bash
-uvicorn main:app --reload
+uvicorn api.zscore:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
