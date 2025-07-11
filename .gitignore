@@ -110,3 +110,4 @@ Thumbs.db
 
 # Keep data directory (CSV files stored here)
 # !data/
+.vercel
