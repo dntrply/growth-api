@@ -124,6 +124,7 @@ The API uses WHO child growth standard reference tables, which are included in t
 
 - Extend support for children beyond 2 years of age using WHO standards
   - Reference: https://www.who.int/tools/child-growth-standards/standards/length-height-for-age
+  - Reference data: https://www.cdc.gov/growthcharts/who-data-files.htm
 - Add BMI-for-age calculations
 - Implement percentile calculations in addition to z-scores
 - Add interactive API documentation with Swagger UI

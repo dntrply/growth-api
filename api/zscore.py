@@ -47,6 +47,7 @@ tables = {
     ("M", "length"): pd.read_csv(os.path.join(DATA_DIR, "WHO-Boys-Length-for-age-Percentiles_LMS.csv")),
     ("M", "weight"): pd.read_csv(os.path.join(DATA_DIR, "WHO-Boys-Weight-for-age-Percentiles_LMS.csv")),
     ("M", "wfl"):    pd.read_csv(os.path.join(DATA_DIR, "WHO-Boys-Weight-for-length-Percentiles_LMS.csv")),
+    ("F", "length"): pd.read_csv(os.path.join(DATA_DIR, "WHO-Girls-Length-for-age-Percentiles_LMS.csv")),
     ("F", "weight"): pd.read_csv(os.path.join(DATA_DIR, "WHO-Girls-Weight-for-age-Percentiles_LMS.csv")),
     ("F", "wfl"):    pd.read_csv(os.path.join(DATA_DIR, "WHO-Girls-Weight-for-length-Percentiles_LMS.csv")),
 }
